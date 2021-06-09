@@ -1,0 +1,13 @@
+body{
+    background-color: rgb(112, 15, 131);
+}
+
+div{
+    height: 350px;
+    width: 400px;
+    text-align: center;
+    margin: 100px auto 10px auto;
+    padding: 50px;
+    border: solid 1px ;
+    border-radius: 25px;
+}
