@@ -5,6 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="style.css">
+    <script src="functions.js"></script>
     <title>Bin2Desc</title>
 </head>
 <body>
@@ -13,12 +14,12 @@
         <h2>Binary to Decimal Converter</h2>
         <div id="main">
         <label for="Binary">Binary:</label>
-        <input type="text" maxlength="8" placeholder="entry a binary number" name="Binary" id="Binary" class="number">
+        <input type="text" placeholder="entry a binary number" name="Binary" id="Binary" class="number">
         <br>
-        <label for="Decimal" id="Decimal">Decimal:</label>
-        <input type="text" maxlength="8" name="Decimal" id="Decimal" class="number">
+        <label for="Decimal">Decimal:</label>
+        <input type="text" maxlength="0" name="Decimal" id="Decimal" class="number">
         <br>
-        <input id="button" type="button" value="Converter">
+        <button id="button" onclick="converter()">Converter</button>
     </div>
     </div>
 </body>
