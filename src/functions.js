@@ -2,7 +2,6 @@ function converter(){
     var binary=document.getElementById("Binary").value;
     var sum=0;
     var scale=testNumber(binary);
-    window.alert(scale)
     for (let i = 0; i < scale; i++){
         var element = binary[i]*2**((scale-1)-i);  
         sum += element;
