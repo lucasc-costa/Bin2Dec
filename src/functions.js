@@ -1,24 +1,43 @@
-function converter(){
-    var binary=document.getElementById("Binary").value;
-    var sum=0;
-    var scale=testNumber(binary);
-    for (let i = 0; i < scale; i++){
-        var element = binary[i]*2**((scale-1)-i);  
-        sum += element;
+const button = document.getElementById("button");
+const inputNumbers = document.querySelectorAll(".number")
+
+button.addEventListener("click", convertNumberBinary)
+
+inputNumbers.forEach(input => input.addEventListener("blur", convertNumber))
+
+function convertNumber(event){
+    const base = event.target
+    if (base.name === "Binary") {
+        convertNumberBinary(base)
+    } else {
+        console.log("decimal");
+    }
+}
+
+
+
+function convertNumberBinary(element){
+    const binary=element.value;
+    let sum = 0;
+    const isBinary = testNumberBinary(binary);
+    if (isBinary) {     
+        for (let i = 0; i < binary.length; i++){
+            let element = binary[i]*2**((binary.length-1)-i);  
+            sum += element;
+        }
     }
    document.getElementById("Decimal").value=sum;
 }   
 
-function testNumber(number){
-    var scale=0;
-    for (let i = 0; i < number.length; i++) {
-        if (number[i]!=1 && number[i]!=0) {
+function testNumberBinary(number){
+    let isBinary = true
+    for (const element of number) {
+        if (element!=1 && element!=0) {
             window.alert("Please, enter a binary number")
+            isBinary = false
             break
-        }else{
-            scale+=1
         }
     }
-    return scale;
+    return isBinary;
 
 }
