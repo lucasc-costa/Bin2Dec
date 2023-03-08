@@ -1,28 +1,42 @@
-const button = document.getElementById("button");
 const inputNumbers = document.querySelectorAll(".number")
 
-button.addEventListener("click", convertNumberBinary)
-
 inputNumbers.forEach(input => input.addEventListener("blur", convertNumber))
+
+inputNumbers.forEach(input => input.addEventListener("focus", () => {
+    document.getElementById("Binary").value='';
+    document.getElementById("Decimal").value='';
+}))
 
 function convertNumber(event){
     const base = event.target
     if (base.name === "Binary") {
-        convertNumberBinary(base)
+        convertNumberBinary(base.value)
     } else {
-        console.log("decimal");
+        convertNumberDecimal(base.value)
     }
 }
 
+function convertNumberDecimal(decimal) {
+    let binary = []
+    decimal = Number.parseInt(decimal) 
+    if (!decimal) {
+        window.alert("Please, enter a Decimal number")
+    }
+    while (decimal >= 1) {
+        let resto = decimal% 2
+        binary.unshift(Math.trunc(resto))
+        decimal/=2
+    }
+    document.getElementById("Binary").value=binary.join('');
+    
+}
 
-
-function convertNumberBinary(element){
-    const binary=element.value;
+function convertNumberBinary(binary){
     let sum = 0;
     const isBinary = testNumberBinary(binary);
     if (isBinary) {     
         for (let i = 0; i < binary.length; i++){
-            let element = binary[i]*2**((binary.length-1)-i);  
+            let element = binary[i] *2**((binary.length-1)-i);  
             sum += element;
         }
     }
@@ -39,5 +53,4 @@ function testNumberBinary(number){
         }
     }
     return isBinary;
-
 }

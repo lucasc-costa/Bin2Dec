@@ -34,15 +34,3 @@ div#main{
 input#Decimal{
     margin-left: 10px;
 }
-
-#button{
-    display: block;
-    margin: 40px auto;
-    width: 150px;
-    height: 30px;
-    background-color: transparent;
-    color: white;
-    border: solid 1px rgb(255, 255, 255);
-}
-
-
