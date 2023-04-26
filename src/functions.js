@@ -1,24 +1,56 @@
-function converter(){
-    var binary=document.getElementById("Binary").value;
-    var sum=0;
-    var scale=testNumber(binary);
-    for (let i = 0; i < scale; i++){
-        var element = binary[i]*2**((scale-1)-i);  
-        sum += element;
+const inputNumbers = document.querySelectorAll(".number")
+
+inputNumbers.forEach(input => input.addEventListener("blur", convertNumber))
+
+inputNumbers.forEach(input => input.addEventListener("focus", () => {
+    document.getElementById("Binary").value='';
+    document.getElementById("Decimal").value='';
+}))
+
+function convertNumber(event){
+    const base = event.target
+    if (base.name === "Binary") {
+        convertNumberBinary(base.value)
+    } else {
+        convertNumberDecimal(base.value)
+    }
+}
+
+function convertNumberDecimal(decimal) {
+    let binary = []
+    decimal = Number.parseInt(decimal) 
+    if (!decimal) {
+        window.alert("Please, enter a Decimal number")
+    }
+    while (decimal >= 1) {
+        let resto = decimal% 2
+        binary.unshift(Math.trunc(resto))
+        decimal/=2
+    }
+    document.getElementById("Binary").value=binary.join('');
+    
+}
+
+function convertNumberBinary(binary){
+    let sum = 0;
+    const isBinary = testNumberBinary(binary);
+    if (isBinary) {     
+        for (let i = 0; i < binary.length; i++){
+            let element = binary[i] *2**((binary.length-1)-i);  
+            sum += element;
+        }
     }
    document.getElementById("Decimal").value=sum;
 }   
 
-function testNumber(number){
-    var scale=0;
-    for (let i = 0; i < number.length; i++) {
-        if (number[i]!=1 && number[i]!=0) {
+function testNumberBinary(number){
+    let isBinary = true
+    for (const element of number) {
+        if (element!=1 && element!=0) {
             window.alert("Please, enter a binary number")
+            isBinary = false
             break
-        }else{
-            scale+=1
         }
     }
-    return scale;
-
+    return isBinary;
 }
